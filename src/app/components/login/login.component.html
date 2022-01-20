@@ -1,0 +1,38 @@
+<div class="container mx-auto">
+
+  <form autocomplete="off" [formGroup]="forma" (ngSubmit)="login()" class="grid grid-cols-12 gap-2 w-full h-full py-10 text-center">
+
+    <div class="col-span-6 gap-2 col-start-4 my-4">
+      <label for="email" class="block text-sm font-medium text-gray-700">
+          Email
+      </label>
+      <input type="email"
+      formControlName="email"
+      class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline">
+    </div>
+
+
+    <div class="col-span-6 gap-2 col-start-4 my-4">
+      <label for="email" class="block text-sm font-medium text-gray-700">
+          Contraseña
+      </label>
+      <input type="password"
+      formControlName="password"
+      class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline">
+    </div>
+
+    <div class="col-span-6 col-start-4 my-4">
+
+      <button class="mr-1 inline-flex justify-center py-2 px-2 items-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ">
+        <i class="fa fa-plus"></i>
+        Login
+      </button>
+
+    </div>
+
+  </form>
+
+
+
+</div>
+
