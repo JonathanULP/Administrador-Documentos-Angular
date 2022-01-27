@@ -1,0 +1,31 @@
+
+ <!-- Article -->
+ <article class="overflow-hidden rounded">
+
+  <a class="cursor-pointer h-full w-full" [routerLink]="['/archivo',documento._id]">
+    <img  src="./assets/file.png" class="h-full w-full "
+    type="application/pdf">
+  </a>
+
+  <footer class="h-full break-words border-solid">
+      <a class="items-center no-underline hover:underline text-black text-center cursor-pointer break-words"
+      [routerLink]="['/archivo',documento._id]">
+          <p class="text-grey-darker text-sm ">
+            {{ documento.created | date: 'dd-MM-YYYY' : 'UTC'  }}
+          </p>
+          <br>
+          <p class="h-auto break-words">
+            {{ documento.nameDocument}}
+          </p>
+
+      </a>
+  </footer>
+
+</article>
+
+<!-- END Article -->
+
+<!--
+<br> <br>
+<embed  [src]="url | safeUrl" width="500" height="375"
+type="application/pdf"> -->

@@ -17,6 +17,7 @@ export class DocumentosService {
     _id : '',
     name: '',
     email: '',
+    password: '',
     estado: false
 
   };
@@ -31,7 +32,7 @@ export class DocumentosService {
     };
 
       return new Promise<IDocumento>( ( resolve , reject) =>{
-        console.log( `${localStorage.getItem('token')}`);
+
         this.httpClient.get<IDocumento>(`${this.url}`,{headers})
                        .subscribe(
                          (res) => {

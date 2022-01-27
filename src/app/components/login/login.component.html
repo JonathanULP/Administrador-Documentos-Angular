@@ -1,6 +1,6 @@
-<div class="container mx-auto">
+<div class="container mx-auto flex h-screen">
 
-  <form autocomplete="off" [formGroup]="forma" (ngSubmit)="login()" class="grid grid-cols-12 gap-2 w-full h-full py-10 text-center">
+  <form autocomplete="off" [formGroup]="forma" (ngSubmit)="login()" class="m-auto grid grid-cols-12 gap-2 content-center w-full h-full py-10 text-center shadow-lg">
 
     <div class="col-span-6 gap-2 col-start-4 my-4">
       <label for="email" class="block text-sm font-medium text-gray-700">
@@ -23,9 +23,8 @@
 
     <div class="col-span-6 col-start-4 my-4">
 
-      <button class="mr-1 inline-flex justify-center py-2 px-2 items-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ">
-        <i class="fa fa-plus"></i>
-        Login
+      <button class="mr-1 px-5 inline-flex justify-center py-2 items-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ">
+        Ingresar
       </button>
 
     </div>

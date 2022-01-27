@@ -1,24 +1,12 @@
 
-
+<app-header></app-header>
 <div class="container mx-auto">
 
   <div class="grid grid-cols-12 gap-2 w-full h-full py-10 text-center">
 
-    <div class="cols-span-12 gap-4" *ngFor="let documento of idocumentos">
+    <div class="mx-auto col-span-12 xl:col-span-3 md:col-span-3 sm:col-span-3 sm:gap-4 shadow-xl " *ngFor="let documento of idocumentos">
 
-      <label class="" for=""> {{ documento.nameDocument }}</label>
-      <br>
-      <br>
-
-    </div>
-
-    <div class="cols-span-12 gap-4">
-
-
-     <br> <br> <br>
-     <embed  [src]="url" width="500" height="375"
-     type="application/pdf">
-
+        <app-documento [documento]="documento"></app-documento>
 
     </div>
 
