@@ -14,6 +14,9 @@ import { ArchivoComponent } from './components/archivo/archivo.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { HeaderComponent } from './components/header/header.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -32,7 +35,10 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     ReactiveFormsModule,
     AppRoutingModule,
     NgxDocViewerModule,
-    FormsModule
+    FormsModule,
+    MatButtonToggleModule,
+    BrowserAnimationsModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

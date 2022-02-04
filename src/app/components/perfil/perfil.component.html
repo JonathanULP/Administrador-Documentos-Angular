@@ -1,14 +1,22 @@
+<app-header></app-header>
+
 <div class="container mx-auto flex h-screen">
 
-  <div autocomplete="off" class="m-auto grid grid-cols-12 gap-2 content-center w-full h-full py-10 text-center shadow-lg">
+  <form #formulario="ngForm" [formGroup]="forma" (ngSubmit)="actualizar()" autocomplete="off" class="m-auto grid grid-cols-12 gap-2 content-center w-full h-full py-10 text-center shadow-lg">
 
     <div class="col-span-6 gap-2 col-start-4 my-4">
       <label for="nombre" class="block text-sm font-medium text-gray-700">
           Nombre
       </label>
-      <input type="email"
-      [(ngModel)]="usuario.name"
-      class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline">
+      <input type="text"
+      formControlName="name"
+      class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline"
+      [ngClass]="forma.get('name')!.invalid && forma.get('name')!.touched ? 'border-2 border-red-100 text-red-800' : 'border-2 border-green-200 text-green-600'">
+    </div>
+    <div *ngIf="forma.get('name')!.invalid && forma.get('name')!.touched" class="col-span-6 gap-2 col-start-4">
+      <label for="name" class="text-xs font-light text-red-700">
+          El nombre no es válido
+      </label>
     </div>
 
     <div class="col-span-6 gap-2 col-start-4 my-4">
@@ -16,8 +24,14 @@
           Email
       </label>
       <input type="email"
-      [(ngModel)]="usuario.email"
+      formControlName="email"
+      [ngClass]="forma.get('email')!.invalid && forma.get('email')!.touched ? 'border-2 border-red-100 text-red-800' : 'border-2 border-green-200 text-green-600'"
       class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline">
+    </div>
+    <div *ngIf="forma.get('email')!.invalid && forma.get('email')!.touched" class="col-span-6 gap-2 col-start-4">
+      <label for="email" class="text-xs font-light text-red-700">
+          El email no es válido
+      </label>
     </div>
 
 
@@ -26,28 +40,31 @@
           Contraseña
       </label>
       <input type="password"
+      formControlName="password"
+      [ngClass]="forma.get('password')!.invalid && forma.get('password')!.touched ? 'border-2 border-red-100 text-red-800' : 'border-2 border-green-200 text-green-600'"
       class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline">
+    </div>
+    <div *ngIf="forma.get('password')!.invalid && forma.get('password')!.touched" class="col-span-6 gap-2 col-start-4">
+      <label for="password" class="text-xs font-light text-red-700">
+        La contraseña debe contener 6 caracteres minimo
+      </label>
     </div>
 
     <div class="col-span-6 gap-2 col-start-4 my-4">
-      <label for="email" class="block text-sm font-medium text-gray-700">
-          Estado
-      </label>
-      <input type="text"
-      [(ngModel)]="usuario.estado"
-      class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline">
-    </div>
+    <mat-button-toggle-group name="estado" formControlName="estado">
+      <mat-button-toggle value="1" class="mx-1 px-2 border-2 border-green-600 bg-green-600 text-white hover:bg-green-600 focus:bg-red-500">Activo</mat-button-toggle>
+      <mat-button-toggle value="0" class="px-2border-2 border-red-600 bg-red-500 text-white hover:bg-red-600">Inactivo</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
 
     <div class="col-span-6 col-start-4 my-4">
 
-      <button class="mr-1 px-5 inline-flex justify-center py-2 items-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ">
+      <button *ngIf="forma.get('email')!.valid && forma.get('password')!.valid && forma.get('name')!.valid " class="mr-1 px-5 inline-flex justify-center py-2 items-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ">
         Actualizar
       </button>
 
     </div>
 
-  </div>
-
-
+  </form>
 
 </div>

@@ -6,13 +6,16 @@ import { DocumentoComponent } from './documento/documento.component';
 import { ArchivoComponent } from './archivo/archivo.component';
 import { HeaderComponent } from './header/header.component';
 import { PerfilComponent } from './perfil/perfil.component';
+import { MessageBoxComponent } from './message-box/message-box.component';
+import { ReactiveFormsModule , FormsModule } from '@angular/forms';
+
 
 
 
 
 @NgModule({
   declarations: [
-
+    MessageBoxComponent
   ],
   imports: [
     CommonModule,

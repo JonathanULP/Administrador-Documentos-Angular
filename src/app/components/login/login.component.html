@@ -6,10 +6,19 @@
       <label for="email" class="block text-sm font-medium text-gray-700">
           Email
       </label>
+
       <input type="email"
       formControlName="email"
-      class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline">
+      class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline"
+      [ngClass]="forma.get('email')!.invalid && forma.get('email')!.touched ? 'border-2 border-red-100 text-red-800' : 'border-2 border-green-200 text-green-600'">
     </div>
+
+    <div *ngIf="forma.get('email')!.invalid && forma.get('email')!.touched" class="col-span-6 gap-2 col-start-4">
+      <label for="email" class="text-xs font-light text-red-700">
+          El email es invalido
+      </label>
+    </div>
+
 
 
     <div class="col-span-6 gap-2 col-start-4 my-4">
@@ -18,7 +27,14 @@
       </label>
       <input type="password"
       formControlName="password"
-      class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline">
+      class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline"
+      [ngClass]="forma.get('password')!.invalid && forma.get('email')!.touched ? 'border-2 border-red-200 text-red-800' : 'border-2 border-green-200 text-green-600'">
+    </div>
+
+    <div *ngIf="forma.get('password')!.invalid && forma.get('password')!.touched" class="col-span-6 gap-2 col-start-4">
+      <label for="email" class="text-xs font-light text-red-700">
+          La contraseña debe contener 6 caracteres minimo
+      </label>
     </div>
 
     <div class="col-span-6 col-start-4 my-4">

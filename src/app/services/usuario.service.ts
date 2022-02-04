@@ -9,7 +9,7 @@ export class UsuarioService {
 
   constructor( private httpClient: HttpClient) { }
 
-  url: string = 'http://localhost:8088/api/usuarios';
+  private url: string = 'http://localhost:8088/api/usuarios';
 
 
 
@@ -29,6 +29,27 @@ export class UsuarioService {
                        }
                       );
 
+    });
+
+  }
+
+
+  public updateUsuario(iusuario: Usuario) {
+
+    const headers = {
+      'Content-Type'  : 'application/json',
+      'Authorization' : `${localStorage.getItem('token')}`
+    };
+
+    return new Promise<Usuario>( (resolve , reject ) => {
+      this.httpClient.put<Usuario>(`${this.url}/${iusuario._id}`,iusuario,{headers,responseType: 'json'})
+                      .subscribe({
+                        next: (resp) => {
+                          resolve(resp)},
+                          error: (err) => {
+                            reject( err );
+                          }
+                        });
     });
 
   }

@@ -19,11 +19,14 @@ export class LoginService {
 
       return new Promise( ( resolve , reject ) => {
         return this.httpCliente.post('http://localhost:8088/api/auth/login',ilogin, {headers,responseType: 'text'})
-                               .subscribe(
-                                 res => {
-                                   localStorage.setItem('token',res);
-                                   resolve(res)}
-                               );
+                               .subscribe({
+                                 next: (resp) => {
+                                   localStorage.setItem('token',resp);
+                                   resolve(resp)},
+                                   error: (err) => {
+                                     reject( err );
+                                   }
+                                  });
       });
 
   };
