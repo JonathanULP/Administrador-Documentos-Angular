@@ -6,17 +6,27 @@ import { ReactiveFormsModule , FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { SafeUrlPipe } from './Pipes/safe-url.pipe';
+
 import { LoginComponent } from './components/login/login.component';
 import { DocumentosComponent } from './components/documentos/documentos.component';
-import { SafeUrlPipe } from './Pipes/safe-url.pipe';
 import { DocumentoComponent } from './components/documento/documento.component';
 import { ArchivoComponent } from './components/archivo/archivo.component';
 import { NgxDocViewerModule } from 'ngx-doc-viewer';
 import { HeaderComponent } from './components/header/header.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { DocumentoPapeleraComponent } from './components/documento-papelera/documento-papelera.component';
+import { DocumentosPapeleraComponent } from './components/documentos-papelera/documentos-papelera.component';
+import { ERROR404Component } from './components/error404/error404.component';
+
+
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatIconModule} from '@angular/material/icon';
+
+
+
 
 @NgModule({
   declarations: [
@@ -26,6 +36,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     DocumentosComponent,
     ArchivoComponent,
     PerfilComponent,
+    DocumentoPapeleraComponent,
+    DocumentosPapeleraComponent,
+    ERROR404Component,
     SafeUrlPipe,
     HeaderComponent
   ],
@@ -38,7 +51,8 @@ import {MatDialogModule} from '@angular/material/dialog';
     FormsModule,
     MatButtonToggleModule,
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

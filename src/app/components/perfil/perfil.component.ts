@@ -5,6 +5,10 @@ import { UsuarioService } from '../../services/usuario.service';
 import {MatDialog} from '@angular/material/dialog';
 import { MessageBoxComponent } from '../message-box/message-box.component';
 import { FormBuilder, FormGroup , Validators , FormControl } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+
+
 
 
 
@@ -25,7 +29,9 @@ export class PerfilComponent implements OnInit {
 
   forma: FormGroup;
 
-  constructor( private usuarioservice: UsuarioService,public dialog: MatDialog , private fb: FormBuilder) {
+  constructor( private usuarioservice: UsuarioService,public dialog: MatDialog , private fb: FormBuilder , private TitleService : Title ,private router : Router) {
+
+    this.TitleService.setTitle('Mi Perfil');
 
     this.cargarFormulario();
     this.forma = this.crearFormulario();
@@ -33,7 +39,7 @@ export class PerfilComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.getUsuario();
+   this.getUsuario();
 
   };
 
@@ -51,6 +57,9 @@ export class PerfilComponent implements OnInit {
                        .catch(
                          err => {
                           console.log('Error al cargar usuario  ',err);
+                          if( err.status == 401) {
+                            this.router.navigate(['/error404']);
+                          }
                          }
                         );
 

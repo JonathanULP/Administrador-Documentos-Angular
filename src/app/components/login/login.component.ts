@@ -5,6 +5,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Ilogin } from '../../interfaces/Ilogin';
 import { Router } from '@angular/router';
 
+import {Title} from "@angular/platform-browser";
+
+
 
 
 
@@ -26,8 +29,9 @@ export class LoginComponent implements OnInit {
 
   };
 
-  constructor(private serviceLogin: LoginService, private fb: FormBuilder, private router:Router ) {
+  constructor(private serviceLogin: LoginService, private fb: FormBuilder, private router:Router , private titleService:Title ) {
 
+    this.titleService.setTitle('Bienvenidos');
 
     this.forma = this.crearFormulario();
 

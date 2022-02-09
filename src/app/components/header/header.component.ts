@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DocumentosService } from '../../services/documentos.service';
 
 @Component({
   selector: 'app-header',
@@ -19,5 +20,9 @@ export class HeaderComponent implements OnInit {
   toggleNavbar(){
     this.showMenu = !this.showMenu;
   }
+
+  logout() {
+    localStorage.removeItem('token');
+  };
 
 }

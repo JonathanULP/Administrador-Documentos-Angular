@@ -10,6 +10,7 @@ export interface Documento {
   description?: string;
   tag?: string;
   state?: boolean;
+  favorite?:boolean;
   public?: boolean;
   id_usuario?: string;
 }

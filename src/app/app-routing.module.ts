@@ -7,6 +7,8 @@ import { DocumentosComponent } from './components/documentos/documentos.componen
 import { DocumentoComponent } from './components/documento/documento.component';
 import { ArchivoComponent } from './components/archivo/archivo.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { DocumentosPapeleraComponent } from './components/documentos-papelera/documentos-papelera.component';
+import { ERROR404Component } from './components/error404/error404.component';
 
 const routes: Routes = [
 
@@ -31,8 +33,16 @@ const routes: Routes = [
     component: DocumentosComponent
   },
   {
+    path: 'documentosPapelera',
+    component: DocumentosPapeleraComponent
+  },
+  {
     path: 'archivo/:id',
     component: ArchivoComponent
+  },
+  {
+    path: 'error404',
+    component: ERROR404Component
   },
   {
     path: '**',

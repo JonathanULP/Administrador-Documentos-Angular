@@ -23,11 +23,14 @@ export class UsuarioService {
     return new Promise<IUsuario>( ( resolve , reject) =>{
 
       this.httpClient.get<IUsuario>(`${this.url}`,{headers})
-                     .subscribe(
-                       resp => {
-                         resolve( resp );
-                       }
-                      );
+                     .subscribe({
+                      next :  ( resp ) => {
+                        resolve( resp );
+                      },
+                      error : ( err ) => {
+                        reject( err );
+                      }
+                     });
 
     });
 

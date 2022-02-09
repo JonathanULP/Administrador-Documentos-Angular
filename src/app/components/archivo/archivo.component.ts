@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentosService } from 'src/app/services/documentos.service';
-import { SafeResourceUrl } from '@angular/platform-browser';
+import { SafeResourceUrl, Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-archivo',
@@ -15,7 +15,9 @@ export class ArchivoComponent implements OnInit {
   id: string = '';
   extension = 'png';
 
-  constructor( private documentoService: DocumentosService, private route: ActivatedRoute ) {}
+  constructor( private documentoService: DocumentosService, private route: ActivatedRoute , private titleService: Title ) {
+
+  }
 
   ngOnInit() {
 
@@ -34,19 +36,21 @@ export class ArchivoComponent implements OnInit {
 
                                   this.blob = resp;
 
-                                  let name = this.blob.type.split('/');
+                                  let name = this.blob.type.split('.');
                                   this.extension = name[1];
                                   console.log(this.blob.type);
                                   const urlToBlob = window.URL.createObjectURL(this.blob) // get a URL for the blob
                                   this.url = urlToBlob;
 
                                   console.log(this.url);
+                                  this.titleService.setTitle(name[0]);
 
                                }
                              )
                              .catch(
                                err => {
                                  console.log( err );
+                                 this.titleService.setTitle('ERROR');
                                }
                              )
 }

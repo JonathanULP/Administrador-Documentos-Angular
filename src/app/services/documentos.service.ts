@@ -43,6 +43,72 @@ export class DocumentosService {
       });
   };
 
+
+  public getDocumentosFiltro(filtro : string) {
+
+    const headers = {
+      'Content-Type' : 'application/json',
+      'Authorization': `${localStorage.getItem('token')}`
+    };
+
+      return new Promise<IDocumento>( ( resolve , reject) =>{
+
+        this.httpClient.get<IDocumento>(`${this.url}/search/${filtro}`,{headers,responseType: 'json'})
+                       .subscribe(
+                         (res) => {
+                          resolve( res );
+                         }
+                       );
+
+      });
+  };
+
+  public async getDocumentosFavoritos() {
+
+    const headers = {
+      'Content-Type'  : 'application/json',
+      'Authorization' : `${localStorage.getItem('token')}`
+    };
+
+
+    return new Promise ( ( resolve , reject ) => {
+
+      this.httpClient.get(`${this.url}/favoritos`,{headers})
+                     .subscribe({
+                       next : ( resp ) => {
+                         resolve ( resp );
+                       },
+                      error : ( err ) => {
+                         reject ( err );
+                      }
+                     })
+
+    });
+
+  };
+
+
+  public async getDocumentosEliminados() {
+
+    const headers = {
+      'Content-Type'  : 'application/json',
+      'Authorization' : `${localStorage.getItem('token')}`
+    };
+
+    return new Promise<IDocumento>( ( resolve , reject ) => {
+      this.httpClient.get<IDocumento>(`${this.url}/eliminados`,{headers})
+                     .subscribe({
+                       next : ( resp ) => {
+                          resolve( resp );
+                       },
+                       error : ( err ) => {
+                         reject( err );
+                       }
+                     });
+    });
+
+  }
+
   public async getDocumentosByTag() {
 
     const headers = {

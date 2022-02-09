@@ -16,17 +16,17 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" routerLinkActive="active-link">
+          <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" [routerLink]="['/documentos']" routerLinkActive="active-link">
           <span class="ml-2">Mis Documentos</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" routerLinkActive="active-link">
+          <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" [routerLink]="['/documentosPapelera']" routerLinkActive="active-link">
           <span class="ml-2">Papelera</span>
           </a>
         </li>
         <li class="nav-item">
-          <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" [routerLink]="['/login']" routerLinkActive="active-link">
+          <a class="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75" [routerLink]="['/login']" routerLinkActive="active-link" (click)="logout()">
             <i class="fab fa-twitter text-lg leading-lg text-white opacity-75"></i><span class="ml-2"> Salir </span>
           </a>
         </li>

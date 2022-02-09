@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { DocumentosService } from '../../services/documentos.service';
 
 import { Documento } from '../../interfaces/IDocumento';
@@ -6,53 +7,48 @@ import { Documento } from '../../interfaces/IDocumento';
 import {Title} from "@angular/platform-browser";
 
 @Component({
-  selector: 'app-documentos',
-  templateUrl: './documentos.component.html',
-  styleUrls: ['./documentos.component.css']
+  selector: 'app-documentos-papelera',
+  templateUrl: './documentos-papelera.component.html',
+  styleUrls: ['./documentos-papelera.component.css']
 })
-export class DocumentosComponent implements OnInit {
+export class DocumentosPapeleraComponent implements OnInit {
 
   public idocumentos: Documento[] = [];
   public msg : boolean = false;
 
 
   constructor( private documentoService: DocumentosService, private titleService:Title ) {
-    this.titleService.setTitle('Mis Documentos');
+    this.titleService.setTitle("Papelera");
   }
 
   ngOnInit(): void {
-
-      this.getDocumentos();
+    this.getDocumentosEliminados();
   }
 
 
-  public async getDocumentos() {
+  async getDocumentosEliminados() {
 
-    await this.documentoService.getDocumentos()
-              .then(
-                      resp => {
-                        //limpiamos el arreglo
-                        this.idocumentos = [];
-                        //vovlemos a llenar
-                        this.idocumentos.push( ...resp.documentos );
-                        //ocultamos el mensaje de sin resultados
-
-                        this.msg = this.idocumentos.length == 0 ? true : false;
-                      })
-              .catch(
-                      err => {
-                        console.log( err );
-                      });
-
-
-  };
+    await this.documentoService.getDocumentosEliminados()
+                               .then(
+                                 resp => {
+                                  this.idocumentos = [];
+                                  this.idocumentos.push( ...resp.documentos);
+                                  console.log(this.idocumentos);
+                                 }
+                               )
+                               .catch(
+                                 err => {
+                                   console.log( err );
+                                 }
+                               )
+  }
 
   async onKey(event : any) {
     const filtro = event.target.value;
     console.log(filtro);
 
     if(filtro == '') {
-      await this.getDocumentos();
+      await this.getDocumentosEliminados();
     }
     else {
 
@@ -81,8 +77,4 @@ export class DocumentosComponent implements OnInit {
 
   };
 
-
-
 }
-
-
