@@ -1,6 +1,6 @@
 <div class="container mx-auto flex h-screen">
 
-  <form autocomplete="off" [formGroup]="forma" (ngSubmit)="login()" class="m-auto grid grid-cols-12 gap-2 content-center w-full h-full py-10 text-center shadow-lg">
+  <form autocomplete="off" #f="ngForm" [formGroup]="forma" (ngSubmit)="f.form.valid && login()" class="m-auto grid grid-cols-12 gap-2 content-center w-full h-full py-10 text-center shadow-lg">
 
     <div class="col-span-6 gap-2 col-start-4 my-4">
       <label for="email" class="block text-sm font-medium text-gray-700">
@@ -8,6 +8,7 @@
       </label>
 
       <input type="email"
+      required
       formControlName="email"
       class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline"
       [ngClass]="forma.get('email')!.invalid && forma.get('email')!.touched ? 'border-2 border-red-100 text-red-800' : 'border-2 border-green-200 text-green-600'">
@@ -26,6 +27,7 @@
           Contraseña
       </label>
       <input type="password"
+      required
       formControlName="password"
       class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline"
       [ngClass]="forma.get('password')!.invalid && forma.get('email')!.touched ? 'border-2 border-red-200 text-red-800' : 'border-2 border-green-200 text-green-600'">
@@ -39,7 +41,8 @@
 
     <div class="col-span-6 col-start-4 my-4">
 
-      <button class="mr-1 px-5 inline-flex justify-center py-2 items-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ">
+      <button type="submit"
+      class="mr-1 px-5 inline-flex justify-center py-2 items-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-400 hover:bg-green-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 ">
         Ingresar
       </button>
 

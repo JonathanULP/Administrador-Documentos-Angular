@@ -24,6 +24,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
+import { ERROR401Component } from './components/error401/error401.component';
 
 
 
@@ -39,6 +40,7 @@ import {MatIconModule} from '@angular/material/icon';
     DocumentoPapeleraComponent,
     DocumentosPapeleraComponent,
     ERROR404Component,
+    ERROR401Component,
     SafeUrlPipe,
     HeaderComponent
   ],
@@ -52,7 +54,8 @@ import {MatIconModule} from '@angular/material/icon';
     MatButtonToggleModule,
     BrowserAnimationsModule,
     MatDialogModule,
-    MatIconModule
+    MatIconModule,
+    NgxDocViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

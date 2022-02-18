@@ -35,6 +35,7 @@ export class PerfilComponent implements OnInit {
 
     this.cargarFormulario();
     this.forma = this.crearFormulario();
+    this.getUsuario();
   }
 
   ngOnInit(): void {
@@ -58,8 +59,9 @@ export class PerfilComponent implements OnInit {
                          err => {
                           console.log('Error al cargar usuario  ',err);
                           if( err.status == 401) {
-                            this.router.navigate(['/error404']);
+                            this.router.navigate(['/login']);
                           }
+
                          }
                         );
 

@@ -149,7 +149,7 @@ export class DocumentosService {
       'Authorization': `${localStorage.getItem('token')}`
     };
 
-    return new Promise(( resolve , reject ) => {
+    return new Promise<Blob>(( resolve , reject ) => {
 
       this.httpClient.get(`${this.url}/${_id}`,{headers,responseType:'blob'})
                      .subscribe(

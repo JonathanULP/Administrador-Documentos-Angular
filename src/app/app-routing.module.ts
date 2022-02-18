@@ -9,6 +9,7 @@ import { ArchivoComponent } from './components/archivo/archivo.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { DocumentosPapeleraComponent } from './components/documentos-papelera/documentos-papelera.component';
 import { ERROR404Component } from './components/error404/error404.component';
+import { ERROR401Component } from './components/error401/error401.component';
 
 const routes: Routes = [
 
@@ -45,9 +46,12 @@ const routes: Routes = [
     component: ERROR404Component
   },
   {
+    path: 'error401',
+    component: ERROR401Component
+  },
+  {
     path: '**',
-    pathMatch: 'full',
-    redirectTo: 'login'
+    component: ERROR404Component
   }
 
 ];
