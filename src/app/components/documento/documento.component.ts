@@ -1,7 +1,7 @@
 import { Component, OnInit , Input } from '@angular/core';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { SafeResourceUrl } from '@angular/platform-browser';
 import { DocumentosService } from 'src/app/services/documentos.service';
-import { IDocumento , Documento } from '../../interfaces/IDocumento';
+import { Documento } from '../../interfaces/IDocumento';
 
 @Component({
   selector: 'app-documento',

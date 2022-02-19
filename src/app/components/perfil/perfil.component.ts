@@ -33,9 +33,11 @@ export class PerfilComponent implements OnInit {
 
     this.TitleService.setTitle('Mi Perfil');
 
+    console.log(this.usuario);
     this.cargarFormulario();
     this.forma = this.crearFormulario();
     this.getUsuario();
+
   }
 
   ngOnInit(): void {
@@ -53,6 +55,9 @@ export class PerfilComponent implements OnInit {
                             this.usuario.name = resp.usuario.name;
                             this.usuario.email = resp.usuario.email;
                             this.usuario.estado = resp.usuario.estado;
+
+                            console.log(this.usuario);
+
                          }
                         )
                        .catch(

@@ -1,0 +1,21 @@
+<div class="container">
+
+  <div mat-dialog-content>
+
+    <div *ngIf="data === 'agregado'">
+      <div mat-dialog-title>
+        <h1 class="text-red-600 text-sm italic ">Agregado a Favoritos</h1>
+      </div>
+    </div>
+
+    <div *ngIf="data === 'quitado'" >
+        <div mat-dialog-title>
+          <h1 class="text-red-600 text-sm italic ">Eliminado de Favoritos</h1>
+        </div>
+    </div>
+
+  </div>
+</div>
+
+
+

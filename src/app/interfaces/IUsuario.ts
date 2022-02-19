@@ -7,7 +7,7 @@
     _id?        : string;
     name?       : string;
     email?      : string;
-    password?   : string
+    password?   : string;
     estado?     : boolean;
 
   }

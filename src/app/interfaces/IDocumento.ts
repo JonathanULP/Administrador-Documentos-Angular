@@ -1,5 +1,9 @@
-export interface IDocumento {
+export interface IDocumentos {
   documentos: Documento[];
+}
+
+export interface IDocumento {
+  documento: Documento;
 }
 
 export interface Documento {

@@ -1,9 +1,8 @@
-import { Injectable, Pipe } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { UsuarioService } from './usuario.service';
 import { Usuario } from '../interfaces/IUsuario';
-import { IDocumento } from '../interfaces/IDocumento';
-
+import { Documento, IDocumento, IDocumentos } from '../interfaces/IDocumento';
 
 @Injectable({
   providedIn: 'root'
@@ -31,9 +30,9 @@ export class DocumentosService {
       'Authorization': `${localStorage.getItem('token')}`
     };
 
-      return new Promise<IDocumento>( ( resolve , reject) =>{
+      return new Promise<IDocumentos>( ( resolve , reject) =>{
 
-        this.httpClient.get<IDocumento>(`${this.url}`,{headers})
+        this.httpClient.get<IDocumentos>(`${this.url}`,{headers})
                        .subscribe(
                          (res) => {
                           resolve( res );
@@ -51,9 +50,9 @@ export class DocumentosService {
       'Authorization': `${localStorage.getItem('token')}`
     };
 
-      return new Promise<IDocumento>( ( resolve , reject) =>{
+      return new Promise<IDocumentos>( ( resolve , reject) =>{
 
-        this.httpClient.get<IDocumento>(`${this.url}/search/${filtro}`,{headers,responseType: 'json'})
+        this.httpClient.get<IDocumentos>(`${this.url}/search/${filtro}`,{headers,responseType: 'json'})
                        .subscribe(
                          (res) => {
                           resolve( res );
@@ -95,8 +94,8 @@ export class DocumentosService {
       'Authorization' : `${localStorage.getItem('token')}`
     };
 
-    return new Promise<IDocumento>( ( resolve , reject ) => {
-      this.httpClient.get<IDocumento>(`${this.url}/eliminados`,{headers})
+    return new Promise<IDocumentos>( ( resolve , reject ) => {
+      this.httpClient.get<IDocumentos>(`${this.url}/eliminados`,{headers})
                      .subscribe({
                        next : ( resp ) => {
                           resolve( resp );
@@ -160,6 +159,52 @@ export class DocumentosService {
     });
 
   };
+
+  public async infoArchivo( _id: string) {
+
+    const headers = {
+      'Content-Type' : 'application/json',
+      'Authorization': `${localStorage.getItem('token')}`
+    };
+
+    return new Promise<IDocumento>( ( resolve , reject ) =>{
+      this.httpClient.get<IDocumento>(`${this.url}/full/${_id}`,{headers})
+                     .subscribe({
+                       next : ( resp ) => {
+                         resolve( resp );
+                       },
+                       error: ( err ) => {
+                         reject( err );
+                       }
+                     });
+
+    });
+
+  }
+
+
+  public async actualizarArchivo( idocumento : Documento , _id: string) {
+
+    const headers = {
+      'Content-Type'  : 'application/json',
+      'Authorization' : `${localStorage.getItem('token')}`
+    };
+
+    return new Promise<IDocumento>( ( resolve , reject) =>{
+
+      this.httpClient.put<IDocumento>(`${this.url}/${_id}`,idocumento,{headers})
+                     .subscribe({
+                       next : ( resp ) => {
+                         resolve( resp );
+                       },
+                       error : ( err ) => {
+                         reject( err );
+                       }
+                     });
+
+    });
+
+  }
 
 
 

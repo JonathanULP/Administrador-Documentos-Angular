@@ -4,29 +4,17 @@
 <div class="container mx-auto">
   <form class="grid grid-cols-12 gap-2 w-full h-full py-10 my-4 text-center border-2 border-blue-100">
 
-    <div class="col-span-2">
-      <mat-icon (click)="seleccionarFav()" class="text-red-700">{{favorito}}</mat-icon>
+    <div class="col-span-2 sm:self-center">
+      <label class="text-red-700 items-center text-sm font-medium block"> Favorito  </label>
+      <mat-icon
+       (click)="updateFav()"
+       class="text-red-700">{{favorito}}</mat-icon>
+
     </div>
 
   </form>
 
   <div class="grid grid-cols-12 gap-2 w-full h-full py-10 text-center border-2 border-blue-100">
-
-    <!-- Documento -->
-    <!-- <div class="col-span-12 shadow-lg">
-      <embed  [src]="url | safeUrl" class="h-screen w-full"
-      type="application/pdf">
-    </div> -->
-
-
-
-
-    <!-- Imagen -->
-    <!-- <div class="col-start-4 col-span-6 shadow-lg" *ngIf="isImagen()" >
-      <img  [src]="url | safeUrl" class="h-full w-full"
-      type="application/pdf">
-    </div> -->
-
 
     <ng-template [ngIf]="esImagen" [ngIfElse]="loggedOut">
       <div class="col-start-4 col-span-6 shadow-lg">

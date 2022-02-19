@@ -25,6 +25,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import { ERROR401Component } from './components/error401/error401.component';
+import { MessageUpdateComponent } from './components/message-update/message-update.component';
 
 
 
@@ -42,7 +43,8 @@ import { ERROR401Component } from './components/error401/error401.component';
     ERROR404Component,
     ERROR401Component,
     SafeUrlPipe,
-    HeaderComponent
+    HeaderComponent,
+    MessageUpdateComponent
   ],
   imports: [
     BrowserModule,
