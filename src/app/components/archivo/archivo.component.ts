@@ -1,9 +1,9 @@
-import { Component, OnInit , Inject } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DocumentosService } from 'src/app/services/documentos.service';
 import { SafeResourceUrl, Title } from '@angular/platform-browser';
 import { Documento } from 'src/app/interfaces/IDocumento';
-import { MatDialog , MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { MessageUpdateComponent } from '../message-update/message-update.component';
 
 
@@ -19,6 +19,8 @@ export class ArchivoComponent implements OnInit  {
   id: string = '';
   extension = '';
   favorito : string = 'favorite_border';
+  publico : string = 'add_circle';
+  state : string = 'delete'
   esImagen : boolean = true;
 
   documento : Documento = {
@@ -88,6 +90,8 @@ async getInfoArchivo(id : string) {
                               this.documento = resp.documento;
                               console.log(this.documento);
                               this.seleccionarFav(this.documento.favorite as boolean);
+                              this.seleccionarPublic(this.documento.public as boolean);
+                              this.moverAPapelera(this.documento.state as boolean);
 
                             }
                          )
@@ -114,21 +118,85 @@ async seleccionarFav(favorito : boolean) {
   this.favorito = favorito ? 'favorite' : 'favorite_border';
 }
 
+async seleccionarPublic(publico : boolean) {
+  this.publico = publico ? 'add_circle' : 'add_circle_outline';
+}
+
+async moverAPapelera(state : boolean) {
+  this.state = state ? 'delete_outline' : 'delete';
+}
+
 async updateFav() {
-  console.log(this.documento);
+
   this.documento.favorite = this.documento.favorite ? false : true;
   const msg = this.documento.favorite ? 'agregado' : 'quitado';
-  console.log(this.documento.favorite);
+
   this.seleccionarFav(this.documento.favorite);
   this.documentoService.actualizarArchivo(this.documento,this.id)
                        .then(
-                         resp => {
+                         () => {
                           this.dialog.open(MessageUpdateComponent,{
                             data : msg
                           });
                          }
+                       )
+                       .catch(
+                        () => {
+                          this.dialog.open(MessageUpdateComponent,{
+                            data : 'err'
+                          });
+                        }
                        );
 
+
+
+}
+
+async updatePublic() {
+
+  this.documento.public = this.documento.public ? false : true;
+  const msg = this.documento.public ? 'agregadoP' : 'quitadoP';
+
+  this.seleccionarPublic(this.documento.public);
+  this.documentoService.actualizarArchivo(this.documento,this.id)
+                                          .then(
+                                            () => {
+                                              this.dialog.open(MessageUpdateComponent,{
+                                                data : msg
+                                              });
+                                            }
+                                          )
+                                          .catch(
+                                            () => {
+                                              this.dialog.open(MessageUpdateComponent,{
+                                                data : 'err'
+                                              });
+                                            }
+                                           )
+
+}
+
+async updateState() {
+
+  this.documento.state = this.documento.state ? false : true;
+  const msg = this.documento.state ? 'restore' : 'eliminado';
+
+  this.moverAPapelera(this.documento.state);
+  this.documentoService.actualizarArchivo(this.documento,this.id)
+                                        .then(
+                                          () => {
+                                            this.dialog.open(MessageUpdateComponent,{
+                                              data : msg
+                                            });
+                                          }
+                                        )
+                                        .catch(
+                                          () => {
+                                            this.dialog.open(MessageUpdateComponent,{
+                                              data : 'err'
+                                            });
+                                          }
+                                         )
 
 
 }

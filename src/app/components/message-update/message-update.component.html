@@ -14,6 +14,36 @@
         </div>
     </div>
 
+    <div *ngIf="data === 'agregadoP'" >
+      <div mat-dialog-title>
+        <h1 class="text-yellow-600 text-sm italic ">Agregado a Publico</h1>
+      </div>
+    </div>
+
+    <div *ngIf="data === 'quitadoP'" >
+      <div mat-dialog-title>
+        <h1 class="text-yellow-600 text-sm italic ">Eliminado de Publico</h1>
+      </div>
+    </div>
+
+    <div *ngIf="data === 'restore'" >
+      <div mat-dialog-title>
+        <h1 class="text-blue-500 text-sm italic ">Documento restaurado</h1>
+      </div>
+    </div>
+
+    <div *ngIf="data === 'eliminado'" >
+      <div mat-dialog-title>
+        <h1 class="text-blue-500 text-sm italic ">Documento eliminado</h1>
+      </div>
+    </div>
+
+    <div *ngIf="data === 'error'" >
+      <div mat-dialog-title>
+        <h1 class="text-gray-800 text-sm italic ">Upss! Ocurrio un error</h1>
+      </div>
+    </div>
+
   </div>
 </div>
 

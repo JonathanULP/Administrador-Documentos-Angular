@@ -12,6 +12,22 @@
 
     </div>
 
+    <div class="col-span-2 sm:self-center">
+      <label class="text-yellow-500 items-center text-sm font-medium block"> Publico  </label>
+      <mat-icon
+       (click)="updatePublic()"
+       class="text-yellow-500">{{publico}}</mat-icon>
+
+    </div>
+
+    <div class="col-span-2 sm:self-center">
+      <label class="text-blue-500 items-center text-sm font-medium block"> Mover a Papelera  </label>
+      <mat-icon
+       (click)="updateState()"
+       class="text-blue-500">{{state}}</mat-icon>
+
+    </div>
+
   </form>
 
   <div class="grid grid-cols-12 gap-2 w-full h-full py-10 text-center border-2 border-blue-100">
