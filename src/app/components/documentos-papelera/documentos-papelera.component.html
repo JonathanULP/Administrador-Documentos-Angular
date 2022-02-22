@@ -2,19 +2,23 @@
 <app-header></app-header>
 <div class="container mx-auto">
 
-  <div class="mx-auto py-4 grid grid-cols-12 gap-2 ">
-    <input (keyup)="onKey($event)" class="col-start-10 col-span-4 w-full h-full py-3 border-2 border-blue-200 rounded h-full bg-white text-sm text-gray-500 text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline" placeholder="Buscar">
+  <div class="grid grid-cols-12 mx-auto col-start-2 gap-2 w-full h-full py-10 mx-4 text-center shadow-xl my-6 ">
+    <div class="col-start-10 col-span-3 w-full h-full my-3 pr-2">
+      <input (keyup)="onKey($event)" class="border-2 border-blue-200 rounded w-full h-full bg-white text-sm text-gray-500 text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline" placeholder="Buscar">
+    </div>
+
   </div>
 
-  <div class="grid grid-cols-12 gap-2 w-full h-full py-10 text-center">
 
-    <div class="mx-auto col-span-12 xl:col-span-3 md:col-span-3 sm:col-span-3 sm:gap-4 shadow-xl " *ngFor="let documento of idocumentos">
+  <div class="grid grid-cols-12 mx-auto col-start-2 gap-2 w-full h-full py-10 mx-4 text-center shadow-xl">
 
-        <app-documento [documento]="documento"></app-documento>
+    <div class="mx-auto col-span-12 xl:col-span-3 md:col-span-3 sm:col-span-3 sm:gap-4 shadow-xl" *ngFor="let documento of idocumentos">
+
+        <app-documento-papelera [documento]="documento"></app-documento-papelera>
 
     </div>
 
-    <div class="mx-auto col-start-4 col-span-6 text-center text-gray-400 text-xl " *ngIf="msg">
+    <div class="mx-auto col-start-4 col-span-6 text-center text-gray-400 text-xl " *ngIf="idocumentos?.length == 0">
 
       <p class=" italic"> ¡ No se encontraron resultados !</p>
 

@@ -108,36 +108,31 @@ export class DocumentosService {
 
   }
 
-  public async getDocumentosByTag() {
+  public async getDocumentosByTag(etiqueta: string) {
 
     const headers = {
       'Content-Type' : 'application/json',
       'Authorization': `${localStorage.getItem('token')}`
     };
 
-    try{
+
 
       await this.existsUsuario();
       console.log(this.iusuario._id);
 
-      return new Promise( ( resolve , reject ) => {
+      return new Promise<IDocumentos>( ( resolve , reject ) => {
 
-        this.httpClient.get(`${this.url}?etiqueta=Motos`,{headers})
-                       .subscribe(
-                         res => {
-                           resolve( res );
-                         }
-                       );
+        this.httpClient.get<IDocumentos>(`${this.url}?etiqueta=${etiqueta}`,{headers})
+                       .subscribe({
+                         next : res => {
+                          resolve( res );
+                        },
+                        error : err => {
+                          reject( err );
+                        }
+                       });
 
       });
-
-    }
-    catch ( err ) {
-
-      console.log( err );
-
-    }
-
   };
 
 
@@ -198,6 +193,28 @@ export class DocumentosService {
                          resolve( resp );
                        },
                        error : ( err ) => {
+                         reject( err );
+                       }
+                     });
+
+    });
+
+  }
+
+  public async restoreArchivo(id : string) {
+
+    const headers = {
+      'Content-Type'  : 'application/json',
+      'Authorization' : `${localStorage.getItem('token')}`
+    };
+
+    return new Promise<IDocumento>(( resolve , reject) =>{
+      this.httpClient.get<IDocumento>(`${this.url}/restore/${id}`,{headers,responseType:'json'})
+                     .subscribe({
+                       next: ( resp ) => {
+                         resolve( resp );
+                       },
+                       error: ( err ) => {
                          reject( err );
                        }
                      });

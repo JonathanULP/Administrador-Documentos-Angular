@@ -38,6 +38,12 @@
       </div>
     </div>
 
+    <div *ngIf="data === 'restaurado'" >
+      <div mat-dialog-title>
+        <h1 class="text-green-500 text-sm italic ">Documento restaurado</h1>
+      </div>
+    </div>
+
     <div *ngIf="data === 'error'" >
       <div mat-dialog-title>
         <h1 class="text-gray-800 text-sm italic ">Upss! Ocurrio un error</h1>
