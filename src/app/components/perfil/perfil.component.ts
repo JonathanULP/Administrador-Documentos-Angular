@@ -7,6 +7,7 @@ import { MessageBoxComponent } from '../message-box/message-box.component';
 import { FormBuilder, FormGroup , Validators , FormControl } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { Doc } from 'src/app/interfaces/IDocumento';
 
 
 
@@ -72,7 +73,18 @@ export class PerfilComponent implements OnInit {
 
   }
 
-  async actualizar() {
+  async actualizar(instance: Usuario) {
+
+    this.usuario.email = instance.email;
+    this.usuario.estado = instance.estado;
+    this.usuario.name = instance.name;
+    this.usuario.password = instance.password;
+
+    console.log(instance,this.usuario);
+
+    console.log(this.usuario);
+
+    console.log(this.usuario);
 
     this.usuarioservice.updateUsuario(this.usuario)
                         .then( resp => {

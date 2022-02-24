@@ -5,6 +5,7 @@ import { SafeResourceUrl, Title } from '@angular/platform-browser';
 import { Documento } from 'src/app/interfaces/IDocumento';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageUpdateComponent } from '../message-update/message-update.component';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 
 @Component({
@@ -36,12 +37,15 @@ export class ArchivoComponent implements OnInit  {
     id_usuario: ''
   }
 
-  constructor( private documentoService: DocumentosService, private route: ActivatedRoute , private titleService: Title, private dialog : MatDialog ) {
+  id_user_current : string = '';
+  isMyFile : boolean = false;
+
+  constructor( private documentoService: DocumentosService, private usuarioService: UsuarioService ,private route: ActivatedRoute , private titleService: Title, private dialog : MatDialog ) {
 
     this.id = this.route.snapshot.paramMap.get('id') as string;
-    console.log(this.route.snapshot.paramMap.get('id'));
 
     this.getInfoArchivo(this.id);
+    this.getUsuario();
 
   }
 
@@ -74,7 +78,6 @@ export class ArchivoComponent implements OnInit  {
                              )
                              .catch(
                                err => {
-                                 console.log( err );
                                  this.titleService.setTitle('ERROR');
                                }
                              )
@@ -88,7 +91,6 @@ async getInfoArchivo(id : string) {
                               resp => {
 
                               this.documento = resp.documento;
-                              console.log(this.documento);
                               this.seleccionarFav(this.documento.favorite as boolean);
                               this.seleccionarPublic(this.documento.public as boolean);
                               this.moverAPapelera(this.documento.state as boolean);
@@ -97,9 +99,7 @@ async getInfoArchivo(id : string) {
                          )
                          .catch(
                            err => {
-
                             console.log( err );
-
                            }
                           )
 
@@ -198,6 +198,18 @@ async updateState() {
                                           }
                                          )
 
+
+}
+
+async getUsuario() {
+
+  await this.usuarioService.getUsuario()
+                            .then(
+                              resp => {
+                                this.id_user_current = resp.usuario._id as string;
+                                this.isMyFile = this.id_user_current == this.documento.id_usuario ? true : false ;
+                              }
+                             )
 
 }
 }

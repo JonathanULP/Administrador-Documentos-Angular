@@ -26,6 +26,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatIconModule} from '@angular/material/icon';
 import { ERROR401Component } from './components/error401/error401.component';
 import { MessageUpdateComponent } from './components/message-update/message-update.component';
+import { DocumentosFavoritoComponent } from './components/documentos-favorito/documentos-favorito.component';
+import { DocumentosPublicosComponent } from './components/documentos-publicos/documentos-publicos.component';
+import { CreateDocumentoComponent } from './components/create-documento/create-documento.component';
 
 
 
@@ -44,7 +47,10 @@ import { MessageUpdateComponent } from './components/message-update/message-upda
     ERROR401Component,
     SafeUrlPipe,
     HeaderComponent,
-    MessageUpdateComponent
+    MessageUpdateComponent,
+    DocumentosFavoritoComponent,
+    DocumentosPublicosComponent,
+    CreateDocumentoComponent
   ],
   imports: [
     BrowserModule,

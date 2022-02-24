@@ -18,3 +18,12 @@ export interface Documento {
   public?: boolean;
   id_usuario?: string;
 }
+
+export interface Doc {
+  documento?: File,
+  created?: string,
+  description? : string,
+  tag? : string
+
+
+}

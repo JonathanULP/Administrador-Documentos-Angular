@@ -10,6 +10,9 @@ import { PerfilComponent } from './components/perfil/perfil.component';
 import { DocumentosPapeleraComponent } from './components/documentos-papelera/documentos-papelera.component';
 import { ERROR404Component } from './components/error404/error404.component';
 import { ERROR401Component } from './components/error401/error401.component';
+import { DocumentosFavoritoComponent } from './components/documentos-favorito/documentos-favorito.component';
+import { DocumentosPublicosComponent } from './components/documentos-publicos/documentos-publicos.component';
+import { CreateDocumentoComponent } from './components/create-documento/create-documento.component';
 
 const routes: Routes = [
 
@@ -34,12 +37,26 @@ const routes: Routes = [
     component: DocumentosComponent
   },
   {
+    path: 'favoritos',
+    component: DocumentosFavoritoComponent
+
+  },
+  {
+    path: 'publicos',
+    component: DocumentosPublicosComponent
+
+  },
+  {
     path: 'documentosPapelera',
     component: DocumentosPapeleraComponent
   },
   {
     path: 'archivo/:id',
     component: ArchivoComponent
+  },
+  {
+    path: 'crearDocumento',
+    component: CreateDocumentoComponent
   },
   {
     path: 'error404',

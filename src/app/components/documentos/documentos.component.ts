@@ -80,9 +80,8 @@ export class DocumentosComponent implements OnInit {
 
                         this.msg = this.idocumentos.length == 0 ? true : false;
 
-                        console.log(this.idocumentos);
                         this.getEtiquetas(this.idocumentos);
-                        console.log('etiquetas',this.etiquetas);
+
                       })
               .catch(
                       err => {

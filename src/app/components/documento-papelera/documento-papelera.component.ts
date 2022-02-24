@@ -45,7 +45,7 @@ export class DocumentoPapeleraComponent implements OnInit {
                             this.dialog.open(MessageUpdateComponent,{
                               data : 'restaurado'
                             });
-                            setInterval(()=>{
+                            setTimeout(()=>{
                               this.router.navigate(['/documentos']);
                             },3000);
                            }

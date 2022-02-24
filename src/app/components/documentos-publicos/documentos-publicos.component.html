@@ -3,9 +3,9 @@
 <div class="container grid grid-cols-12 col-start-2 gap-2 w-full h-full py-10 mx-4 text-center shadow-xl content-center">
 
 
-    <div class="mx-auto col-span-12 xl:col-span-3 md:col-span-3 sm:col-span-3 sm:gap-4 shadow-xl" *ngFor="let documento of idocumentos">
+    <div class="mx-4 col-span-12 xl:col-span-3 md:col-span-3 sm:col-span-3 sm:gap-4 shadow-xl" *ngFor="let documento of idocumentos">
 
-        <app-documento-papelera [documento]="documento"></app-documento-papelera>
+        <app-documento [documento]="documento"></app-documento>
 
     </div>
 
