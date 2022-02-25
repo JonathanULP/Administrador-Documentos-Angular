@@ -15,8 +15,9 @@ mydata : DialogData = {
 };
 
 constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData) {
+
   this.mydata = data;
-  console.log(this.mydata);
+
 }
 
   ngOnInit(): void {

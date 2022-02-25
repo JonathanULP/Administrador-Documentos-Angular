@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 
-import {MatDialog} from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
+import { DialogData } from '../../interfaces/DialogData';
 
 
 @Component({
@@ -10,7 +11,12 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class MessageBoxComponent implements OnInit {
 
-  constructor( public dialog: MatDialog ) { }
+  mydata : DialogData = {
+    estado : ''
+  };
+  constructor(@Inject(MAT_DIALOG_DATA) public data: DialogData, public dialog: MatDialog ) {
+    this.mydata = data;
+  }
 
   ngOnInit(): void {
   }

@@ -41,7 +41,6 @@ export class DocumentoComponent implements OnInit {
 
                             const urlToBlob = window.URL.createObjectURL(this.blob) // get a URL for the blob
                             this.url = urlToBlob;
-                            console.log('id' , this.id);
                            }
 
                           )

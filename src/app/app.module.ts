@@ -29,6 +29,7 @@ import { MessageUpdateComponent } from './components/message-update/message-upda
 import { DocumentosFavoritoComponent } from './components/documentos-favorito/documentos-favorito.component';
 import { DocumentosPublicosComponent } from './components/documentos-publicos/documentos-publicos.component';
 import { CreateDocumentoComponent } from './components/create-documento/create-documento.component';
+import { MessageBoxComponent } from './components/message-box/message-box.component';
 
 
 
@@ -50,7 +51,8 @@ import { CreateDocumentoComponent } from './components/create-documento/create-d
     MessageUpdateComponent,
     DocumentosFavoritoComponent,
     DocumentosPublicosComponent,
-    CreateDocumentoComponent
+    CreateDocumentoComponent,
+    MessageBoxComponent
   ],
   imports: [
     BrowserModule,

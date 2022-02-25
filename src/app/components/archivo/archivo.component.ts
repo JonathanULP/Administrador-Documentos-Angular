@@ -16,6 +16,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class ArchivoComponent implements OnInit  {
 
   blob: any;
+  blob1: any;
   url: SafeResourceUrl = '';
   id: string = '';
   extension = '';
@@ -198,6 +199,29 @@ async updateState() {
                                           }
                                          )
 
+
+}
+
+async descargar() {
+
+  this.documentoService.descargarArchivo( this.id )
+                       .then(
+                         (resp) => {
+                          this.blob1 = new Blob([resp]);
+
+                          var downloadURL = window.URL.createObjectURL(resp);
+                          var link = document.createElement('a');
+                          link.href = downloadURL;
+                          link.download = this.documento.nameDocument as string;
+                          link.click();
+
+                         }
+                        )
+                        .catch(
+                          ( err ) => {
+                            console.log('Error',err);
+                          }
+                         )
 
 }
 

@@ -48,7 +48,6 @@ export class DocumentosComponent implements OnInit {
         resp => {
           this.idocumentos = [];
           this.idocumentos.push( ...resp.documentos);
-          console.log(this.idocumentos);
         }
        )
        .catch(
@@ -93,7 +92,6 @@ export class DocumentosComponent implements OnInit {
 
   async onKey(event : any) {
     const filtro = event.target.value;
-    console.log(filtro);
 
     if(filtro == '') {
       await this.getDocumentos();
@@ -105,7 +103,6 @@ export class DocumentosComponent implements OnInit {
                                  resp => {
                                    this.idocumentos = [];
                                    this.idocumentos.push( ...resp.documentos);
-                                   console.log(this.idocumentos);
                                    this.msg = false;
 
                                    if (this.idocumentos.length == 0) {

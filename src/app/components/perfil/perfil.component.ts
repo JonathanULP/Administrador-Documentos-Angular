@@ -80,16 +80,9 @@ export class PerfilComponent implements OnInit {
     this.usuario.name = instance.name;
     this.usuario.password = instance.password;
 
-    console.log(instance,this.usuario);
-
-    console.log(this.usuario);
-
-    console.log(this.usuario);
-
     this.usuarioservice.updateUsuario(this.usuario)
-                        .then( resp => {
+                        .then( () => {
                             this.openDialog();
-                            console.log('Usuario actualizado' , resp);
                         })
                         .catch( err => {
                           console.log(err);
@@ -98,7 +91,9 @@ export class PerfilComponent implements OnInit {
   };
 
   openDialog() {
-    this.dialog.open(MessageBoxComponent);
+    this.dialog.open(MessageBoxComponent,{
+      data: 'editado'
+    });
   }
 
   crearFormulario() {

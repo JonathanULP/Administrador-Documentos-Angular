@@ -4,6 +4,9 @@ import { UsuarioService } from './usuario.service';
 import { Usuario } from '../interfaces/IUsuario';
 import { Doc, Documento, IDocumento, IDocumentos } from '../interfaces/IDocumento';
 
+
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -260,6 +263,26 @@ export class DocumentosService {
                          reject( err );
                        }
                      })
+    });
+
+  }
+
+  public async descargarArchivo(id : string) {
+
+    const headers = {
+      'Authorization' : `${localStorage.getItem('token')}`
+    };
+
+    return new Promise<Blob>(( resolve , reject ) =>{
+      this.httpClient.get(`${this.url}/download/${id}`,{headers,responseType : 'blob'})
+                     .subscribe({
+                       next: ( resp ) => {
+                         resolve( resp );
+                       },
+                       error: ( err ) => {
+                         reject( err );
+                       }
+                     });
     });
 
   }
