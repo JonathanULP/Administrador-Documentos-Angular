@@ -6,6 +6,8 @@ import { Documento } from 'src/app/interfaces/IDocumento';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageUpdateComponent } from '../message-update/message-update.component';
 import { UsuarioService } from 'src/app/services/usuario.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { data } from 'autoprefixer';
 
 
 @Component({
@@ -41,7 +43,7 @@ export class ArchivoComponent implements OnInit  {
   id_user_current : string = '';
   isMyFile : boolean = false;
 
-  constructor( private documentoService: DocumentosService, private usuarioService: UsuarioService ,private route: ActivatedRoute , private titleService: Title, private dialog : MatDialog ) {
+  constructor( private documentoService: DocumentosService, private usuarioService: UsuarioService ,private route: ActivatedRoute , private titleService: Title, private dialog : MatDialog ,private _snackBar: MatSnackBar ) {
 
     this.id = this.route.snapshot.paramMap.get('id') as string;
 
@@ -156,15 +158,16 @@ async updateFav() {
 async updatePublic() {
 
   this.documento.public = this.documento.public ? false : true;
-  const msg = this.documento.public ? 'agregadoP' : 'quitadoP';
+  const msg = this.documento.public ? 'Agregado a Publicos' : 'Quitado de Publicos';
 
   this.seleccionarPublic(this.documento.public);
   this.documentoService.actualizarArchivo(this.documento,this.id)
                                           .then(
                                             () => {
-                                              this.dialog.open(MessageUpdateComponent,{
+                                              this.openSnackBar(msg);
+                                              /* this.dialog.open(MessageUpdateComponent,{
                                                 data : msg
-                                              });
+                                              }); */
                                             }
                                           )
                                           .catch(
@@ -186,6 +189,7 @@ async updateState() {
   this.documentoService.actualizarArchivo(this.documento,this.id)
                                         .then(
                                           () => {
+
                                             this.dialog.open(MessageUpdateComponent,{
                                               data : msg
                                             });
@@ -236,4 +240,9 @@ async getUsuario() {
                              )
 
 }
+
+openSnackBar(msg: string) {
+  this._snackBar.open(msg,'OK');
+}
+
 }

@@ -9,6 +9,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { SafeUrlPipe } from './Pipes/safe-url.pipe';
 
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 import { LoginComponent } from './components/login/login.component';
 import { DocumentosComponent } from './components/documentos/documentos.component';
@@ -68,7 +72,10 @@ import { MessageBoxComponent } from './components/message-box/message-box.compon
     MatDialogModule,
     MatIconModule,
     NgxDocViewerModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatChipsModule,
+    MatTooltipModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

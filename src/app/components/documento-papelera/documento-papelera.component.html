@@ -19,8 +19,19 @@
 
       </a>
       <br>
-      <p (click)="restore()" class="text-white bg-blue-600 cursor-pointer hover:bg-blue-700 hover:no-underline py-2"> Restaurar</p>
-      <p (click)="eliminar()" class="text-white bg-red-600 cursor-pointer hover:bg-red-700 hover:no-underline py-2"> Eliminar</p>
+      <p (click)="restore()"
+         matTooltip="El documento se restaurará"
+         matTooltipClass="example-tooltip-blue"
+         matTooltipPosition="right"
+         class="text-white bg-blue-600 cursor-pointer hover:bg-blue-700 hover:no-underline py-2">
+         Restaurar</p>
+
+      <p (click)="eliminar()"
+         matTooltip="El documento se eliminara permanentemente"
+         matTooltipClass="example-tooltip-red"
+         matTooltipPosition="below"
+         class="text-white bg-red-600 cursor-pointer hover:bg-red-700 hover:no-underline py-2">
+         Eliminar</p>
 
   </footer>
 
