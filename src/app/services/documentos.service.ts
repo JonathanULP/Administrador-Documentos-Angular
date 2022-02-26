@@ -288,6 +288,28 @@ export class DocumentosService {
   }
 
 
+  public async eliminarFisicamente(id : string) {
+
+    const headers = {
+      'Content-Type'  : 'application/json',
+      'Authorization' : `${localStorage.getItem('token')}`
+    };
+
+    return new Promise( ( resolve , reject ) =>{
+      this.httpClient.delete(`${this.url}/fisicamente/${id}`,{headers})
+                     .subscribe({
+                       next: ( resp ) => {
+                         resolve( resp );
+                       },
+                       error: ( err ) => {
+                         reject( err );
+                       }
+                     });
+    });
+
+  };
+
+
 
 
 

@@ -4,10 +4,9 @@ import { UsuarioService } from '../../services/usuario.service';
 
 import {MatDialog} from '@angular/material/dialog';
 import { MessageBoxComponent } from '../message-box/message-box.component';
-import { FormBuilder, FormGroup , Validators , FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-import { Doc } from 'src/app/interfaces/IDocumento';
 
 
 
@@ -103,7 +102,7 @@ export class PerfilComponent implements OnInit {
       name     : ['',[Validators.required,Validators.pattern('[A-Za-z0-9.]{3,}$')]],
       email    : ['',[Validators.required,Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')]],
       password : ['',[Validators.required,Validators.minLength(6)]],
-      estado   : [true,[Validators.required]]
+      estado   : ['', Validators.requiredTrue]
     });
 
   };

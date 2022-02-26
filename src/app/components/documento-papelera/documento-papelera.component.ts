@@ -4,6 +4,7 @@ import { DocumentosService } from 'src/app/services/documentos.service';
 import { Documento } from '../../interfaces/IDocumento';
 import { MatDialog } from '@angular/material/dialog';
 import { MessageUpdateComponent } from '../message-update/message-update.component';
+import { MessageBoxComponent } from '../message-box/message-box.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -36,9 +37,9 @@ export class DocumentoPapeleraComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  restore() {
+  async restore() {
 
-    this.documentoService.restoreArchivo(this.documento._id as string)
+    await this.documentoService.restoreArchivo(this.documento._id as string)
                          .then(
                            resp => {
 
@@ -55,6 +56,29 @@ export class DocumentoPapeleraComponent implements OnInit {
                              console.log('Error',err);
                            }
                           )
+
+  }
+
+  async eliminar() {
+
+    await this.documentoService.eliminarFisicamente(this.documento._id as string)
+                               .then(
+                                 () => {
+
+                                  this.dialog.open(MessageBoxComponent,{
+                                    data : 'eliminado'
+                                  });
+
+                                  this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+                                  this.router.navigate(['documentosPapelera']);
+                                });
+                                 }
+                                )
+                                .catch(
+                                  err => {
+                                    console.log(err);
+                                  }
+                                 )
 
   }
 

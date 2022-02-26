@@ -3,24 +3,25 @@
  <article class="overflow-hidden rounded">
 
   <a class="cursor-default h-full w-full" >
-    <img  src="./assets/file.png" class="h-full w-full"
+    <img  src="./assets/file3.png" class="h-full w-full"
     type="application/pdf">
   </a>
 
   <footer class="h-full break-words border-solid">
       <a class="hover:no-underline cursor-default items-center no-underline text-black text-center break-words">
-          <p class="text-grey-darker text-sm ">
+          <p class="text-blue-900 text-sm ">
             {{ documento.created | date: 'dd-MM-YYYY' : 'UTC'  }}
           </p>
           <br>
-          <p class="h-auto break-words">
+          <p class="h-auto break-words text-blue-900">
             {{ documento.nameDocument}}
           </p>
 
       </a>
       <br>
-      <hr>
-      <p (click)="restore()" class="text-blue-600 cursor-pointer hover:text-blue-800 hover:underline"> Restaurar</p>
+      <p (click)="restore()" class="text-white bg-blue-600 cursor-pointer hover:bg-blue-700 hover:no-underline py-2"> Restaurar</p>
+      <p (click)="eliminar()" class="text-white bg-red-600 cursor-pointer hover:bg-red-700 hover:no-underline py-2"> Eliminar</p>
+
   </footer>
 
 </article>

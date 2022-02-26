@@ -8,6 +8,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { SafeUrlPipe } from './Pipes/safe-url.pipe';
 
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+
 import { LoginComponent } from './components/login/login.component';
 import { DocumentosComponent } from './components/documentos/documentos.component';
 import { DocumentoComponent } from './components/documento/documento.component';
@@ -65,7 +67,8 @@ import { MessageBoxComponent } from './components/message-box/message-box.compon
     BrowserAnimationsModule,
     MatDialogModule,
     MatIconModule,
-    NgxDocViewerModule
+    NgxDocViewerModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent]
