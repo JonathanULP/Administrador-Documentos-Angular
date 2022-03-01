@@ -1,11 +1,23 @@
 
 <app-header></app-header>
-<div class="container grid grid-cols-12 col-start-2 gap-2 w-full h-full py-10 mx-4 text-center shadow-xl content-center">
+<div class="container mx-auto">
+
+<div class="grid grid-cols-12 col-start-2 gap-2 py-10 content-center text-center">
+
+  <div class="col-start-5 col-span-4 ">
+    <h1 class="mb-4 font-medium text-gray-600 hover:text-gray-800 text-2xl"> DOCUMENTOS PÚBLICOS</h1>
+    <hr>
+  </div>
 
 
-    <div class="mx-4 col-span-12 xl:col-span-3 md:col-span-3 sm:col-span-3 sm:gap-4 shadow-xl" *ngFor="let documento of idocumentos">
+</div>
 
-        <app-documento [documento]="documento"></app-documento>
+<div class="grid grid-cols-12 col-start-2 gap-2 w-full h-full py-10 mx-4 text-center shadow-xl">
+
+
+    <div class="mx-auto col-span-12 xl:col-span-2 md:col-span-2 sm:col-span-3 sm:gap-4 shadow-xl" *ngFor="let documento of idocumentos">
+
+        <app-documento-publico [documento]="documento"></app-documento-publico>
 
     </div>
 
@@ -16,4 +28,8 @@
     </div>
 
 
+  </div>
+
 </div>
+
+

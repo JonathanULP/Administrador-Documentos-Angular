@@ -13,6 +13,7 @@ import { ERROR401Component } from './components/error401/error401.component';
 import { DocumentosFavoritoComponent } from './components/documentos-favorito/documentos-favorito.component';
 import { DocumentosPublicosComponent } from './components/documentos-publicos/documentos-publicos.component';
 import { CreateDocumentoComponent } from './components/create-documento/create-documento.component';
+import { CreateUserComponent } from './components/create-user/create-user.component';
 
 const routes: Routes = [
 
@@ -57,6 +58,10 @@ const routes: Routes = [
   {
     path: 'crearDocumento',
     component: CreateDocumentoComponent
+  },
+  {
+    path: 'crearUser',
+    component: CreateUserComponent
   },
   {
     path: 'error404',

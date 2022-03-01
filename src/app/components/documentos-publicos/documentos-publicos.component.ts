@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Documento } from 'src/app/interfaces/IDocumento';
 import { DocumentosService } from 'src/app/services/documentos.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-documentos-publicos',
@@ -11,7 +12,7 @@ export class DocumentosPublicosComponent implements OnInit {
 
   public idocumentos: Documento[] = [];
 
-  constructor( private documentoService : DocumentosService) { }
+  constructor( private documentoService : DocumentosService , private snackBar : MatSnackBar) { }
 
   ngOnInit(): void {
     this.getDocumentosPublicos();
@@ -23,12 +24,11 @@ export class DocumentosPublicosComponent implements OnInit {
                          .then(
                            resp => {
                             this.idocumentos.push( ...resp.documentos );
-                            console.log(this.idocumentos);
                            }
                           )
                           .catch(
                             err => {
-                              console.log( err );
+                              this.snackBar.open('Upsss! Ocurrio un error inesperado','OK');
                             }
                            )
 

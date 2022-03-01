@@ -6,6 +6,7 @@ import { Ilogin } from '../../interfaces/Ilogin';
 import { Router } from '@angular/router';
 
 import {Title} from "@angular/platform-browser";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
 
   };
 
-  constructor(private serviceLogin: LoginService, private fb: FormBuilder, private router:Router , private titleService:Title ) {
+  constructor(private serviceLogin: LoginService, private fb: FormBuilder, private router:Router , private titleService:Title , private snackBar :MatSnackBar ) {
 
     this.titleService.setTitle('Bienvenidos');
 
@@ -53,9 +54,10 @@ export class LoginComponent implements OnInit {
                              this.errors = false;
 
                             })
-                           .catch( err => {
+                           .catch( () => {
                             this.errors = true;
-                            console.log( err )});
+                            this.snackBar.open('email / contraseña son incorrectos','OK');
+                           });
 
   };
 

@@ -4,10 +4,8 @@ import { DocumentosService } from 'src/app/services/documentos.service';
 import { SafeResourceUrl, Title } from '@angular/platform-browser';
 import { Documento } from 'src/app/interfaces/IDocumento';
 import { MatDialog } from '@angular/material/dialog';
-import { MessageUpdateComponent } from '../message-update/message-update.component';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { data } from 'autoprefixer';
 
 
 @Component({
@@ -74,13 +72,13 @@ export class ArchivoComponent implements OnInit  {
 
                                   this.isImagen(this.extension);
 
-
                                   this.titleService.setTitle(name[0]);
 
                                }
                              )
                              .catch(
-                               err => {
+                               () => {
+                                 this.openSnackBar('Upsss! Ocurrio un error inesperado.');
                                  this.titleService.setTitle('ERROR');
                                }
                              )
@@ -101,9 +99,8 @@ async getInfoArchivo(id : string) {
                             }
                          )
                          .catch(
-                           err => {
-                            console.log( err );
-                           }
+                           () => {
+                            this.openSnackBar('Upsss! Ocurrio un error inesperado.');                           }
                           )
 
 }
@@ -132,22 +129,18 @@ async moverAPapelera(state : boolean) {
 async updateFav() {
 
   this.documento.favorite = this.documento.favorite ? false : true;
-  const msg = this.documento.favorite ? 'agregado' : 'quitado';
+  const msg = this.documento.favorite ? 'Agregado a Favoritos' : 'Eliminado de Favoritos';
 
   this.seleccionarFav(this.documento.favorite);
   this.documentoService.actualizarArchivo(this.documento,this.id)
                        .then(
                          () => {
-                          this.dialog.open(MessageUpdateComponent,{
-                            data : msg
-                          });
+                          this.openSnackBar(msg);
                          }
                        )
                        .catch(
                         () => {
-                          this.dialog.open(MessageUpdateComponent,{
-                            data : 'err'
-                          });
+                          this.openSnackBar('Error al actualizar documento');
                         }
                        );
 
@@ -172,9 +165,7 @@ async updatePublic() {
                                           )
                                           .catch(
                                             () => {
-                                              this.dialog.open(MessageUpdateComponent,{
-                                                data : 'err'
-                                              });
+                                              this.openSnackBar('Error al actualizar documento');
                                             }
                                            )
 
@@ -183,23 +174,18 @@ async updatePublic() {
 async updateState() {
 
   this.documento.state = this.documento.state ? false : true;
-  const msg = this.documento.state ? 'restore' : 'eliminado';
+  const msg = this.documento.state ? 'Documento restaurado' : 'Documento eliminado';
 
   this.moverAPapelera(this.documento.state);
   this.documentoService.actualizarArchivo(this.documento,this.id)
                                         .then(
                                           () => {
-
-                                            this.dialog.open(MessageUpdateComponent,{
-                                              data : msg
-                                            });
+                                            this.openSnackBar(msg);
                                           }
                                         )
                                         .catch(
                                           () => {
-                                            this.dialog.open(MessageUpdateComponent,{
-                                              data : 'err'
-                                            });
+                                            this.openSnackBar('Error al actualizar documento');
                                           }
                                          )
 
@@ -222,8 +208,8 @@ async descargar() {
                          }
                         )
                         .catch(
-                          ( err ) => {
-                            console.log('Error',err);
+                          () => {
+                            this.openSnackBar('Error al actualizar documento');
                           }
                          )
 
@@ -238,6 +224,11 @@ async getUsuario() {
                                 this.isMyFile = this.id_user_current == this.documento.id_usuario ? true : false ;
                               }
                              )
+                             .catch(
+                               () => {
+                                this.openSnackBar('Error al obtener usuario');
+                               }
+                              )
 
 }
 

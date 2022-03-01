@@ -4,7 +4,7 @@
 <div class="container mx-auto">
   <form class="grid grid-cols-12 gap-2 w-full h-full py-10 my-4 text-center border-2 border-blue-100" *ngIf="isMyFile">
 
-    <div class="col-span-2 sm:self-center">
+    <div class="col-span-3 sm:self-center">
       <label class="text-red-700 items-center text-sm font-medium block cursor-pointer"> Favorito  </label>
       <mat-icon
        (click)="updateFav()"
@@ -12,7 +12,7 @@
 
     </div>
 
-    <div class="col-span-2 sm:self-center">
+    <div class="col-span-3 sm:self-center">
       <label class="text-yellow-500 items-center text-sm font-medium block cursor-pointer"> Publico  </label>
       <mat-icon
        (click)="updatePublic()"
@@ -20,7 +20,7 @@
 
     </div>
 
-    <div class="col-span-2 sm:self-center">
+    <div class="col-span-3 sm:self-center">
       <label class="text-blue-500 items-center text-sm font-medium block cursor-pointer"> Mover a Papelera  </label>
       <mat-icon
        (click)="updateState()"
@@ -28,7 +28,7 @@
 
     </div>
 
-    <div class="col-span-2 sm:self-center">
+    <div class="col-span-3 sm:self-center">
       <label class="text-green-500 items-center text-sm font-medium block cursor-pointer"> Descargar</label>
 
        <mat-icon
@@ -54,8 +54,13 @@
       </div>
     </ng-template>
 
-
   </div>
+
+  <div class="grid grid-cols-12 gap-2 w-full h-full py-10 border-2 text-center border-blue-100" title="Descripción del documento">
+    <div class="col-span-12">
+      <p class="text-sm font-light italic cursor-default" title="Descripción del documento"> {{documento.description}} </p>
+    </div> 
+  </div>  
 
 </div>
 

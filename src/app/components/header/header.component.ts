@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { DocumentosService } from '../../services/documentos.service';
 
 @Component({
@@ -9,11 +10,15 @@ import { DocumentosService } from '../../services/documentos.service';
 export class HeaderComponent implements OnInit {
 
   showMenu = false;
-  constructor() {
+  nombre : string = '';
+  constructor( private usuarioService : UsuarioService) {
     this.toggleNavbar();
   }
 
   ngOnInit(): void {
+
+    this.obtenerUser();
+
   }
 
 
@@ -24,5 +29,16 @@ export class HeaderComponent implements OnInit {
   logout() {
     localStorage.removeItem('token');
   };
+
+  async obtenerUser() {
+
+    await this.usuarioService.getUsuario()
+                       .then(
+                         ( resp ) => {
+                           this.nombre = resp.usuario.name as string;
+                         }
+                        )
+
+  }
 
 }

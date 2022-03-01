@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MessageUpdateComponent } from '../message-update/message-update.component';
 import { MessageBoxComponent } from '../message-box/message-box.component';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-documento-papelera',
@@ -32,7 +33,7 @@ export class DocumentoPapeleraComponent implements OnInit {
     id_usuario: ''
   };
 
-  constructor( private documentoService : DocumentosService , private dialog : MatDialog ,private router : Router) { }
+  constructor( private documentoService : DocumentosService , private dialog : MatDialog ,private router : Router , private snackBar : MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -41,7 +42,7 @@ export class DocumentoPapeleraComponent implements OnInit {
 
     await this.documentoService.restoreArchivo(this.documento._id as string)
                          .then(
-                           resp => {
+                           () => {
 
                             this.dialog.open(MessageUpdateComponent,{
                               data : 'restaurado'
@@ -52,8 +53,8 @@ export class DocumentoPapeleraComponent implements OnInit {
                            }
                          )
                          .catch(
-                           err => {
-                             console.log('Error',err);
+                           () => {
+                             this.snackBar.open('Upsss! Ocurrio un error inesperado.','OK');
                            }
                           )
 
@@ -75,8 +76,8 @@ export class DocumentoPapeleraComponent implements OnInit {
                                  }
                                 )
                                 .catch(
-                                  err => {
-                                    console.log(err);
+                                  () => {
+                                    this.snackBar.open('Upsss! Ocurrio un error inesperado.','OK');
                                   }
                                  )
 

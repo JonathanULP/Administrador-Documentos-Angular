@@ -36,6 +36,9 @@ import { DocumentosFavoritoComponent } from './components/documentos-favorito/do
 import { DocumentosPublicosComponent } from './components/documentos-publicos/documentos-publicos.component';
 import { CreateDocumentoComponent } from './components/create-documento/create-documento.component';
 import { MessageBoxComponent } from './components/message-box/message-box.component';
+import { AvatarModule } from 'ngx-avatar';
+import { CreateUserComponent } from './components/create-user/create-user.component';
+import { DocumentoPublicoComponent } from './components/documento-publico/documento-publico.component';
 
 
 
@@ -57,8 +60,10 @@ import { MessageBoxComponent } from './components/message-box/message-box.compon
     MessageUpdateComponent,
     DocumentosFavoritoComponent,
     DocumentosPublicosComponent,
+    DocumentoPublicoComponent,
     CreateDocumentoComponent,
-    MessageBoxComponent
+    MessageBoxComponent,
+    CreateUserComponent
   ],
   imports: [
     BrowserModule,
@@ -75,7 +80,8 @@ import { MessageBoxComponent } from './components/message-box/message-box.compon
     MatSlideToggleModule,
     MatChipsModule,
     MatTooltipModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    AvatarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

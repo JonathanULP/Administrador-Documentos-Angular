@@ -9,6 +9,6 @@ export class SafeUrlPipe implements PipeTransform {
   constructor ( private domSanitizer: DomSanitizer){}
 
   transform(url:any) {
-    return this.domSanitizer.bypassSecurityTrustResourceUrl(url);
+    return this.domSanitizer.bypassSecurityTrustResourceUrl(url) as string;
   }
 }

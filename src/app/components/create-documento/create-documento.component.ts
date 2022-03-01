@@ -4,6 +4,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { Doc } from 'src/app/interfaces/IDocumento';
 import { DocumentosService } from 'src/app/services/documentos.service';
 import { MessageBoxComponent } from '../message-box/message-box.component';
+import { DatePipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-create-documento',
@@ -13,11 +15,12 @@ import { MessageBoxComponent } from '../message-box/message-box.component';
 export class CreateDocumentoComponent implements OnInit {
 
   forma: FormGroup;
-
+  datepipe: DatePipe = new DatePipe('en-US')
+  currentDate = new Date();
 
   selectedFile  = '';
 
-  constructor( private fb : FormBuilder , private documentoService: DocumentosService , private dialog : MatDialog) {
+  constructor( private fb : FormBuilder , private documentoService: DocumentosService , private dialog : MatDialog , private snackBar : MatSnackBar) {
 
     this.forma = this.crearFormulario();
 
@@ -31,8 +34,8 @@ export class CreateDocumentoComponent implements OnInit {
 
     return this.forma = this.fb.group({
 
-      documento     : ['',[Validators.required]],
       created       : ['',[Validators.required]],
+      documento     : ['',[Validators.required]],
       description   : ['',[Validators.required,Validators.minLength(2)]],
       tag           : ['',[Validators.required,Validators.minLength(2)]]
     });
@@ -41,10 +44,12 @@ export class CreateDocumentoComponent implements OnInit {
 
   async crear(instancia : Doc) {
 
+    const formatDate =  this.datepipe.transform(this.currentDate,'YYYY-MM-dd');
+
     const payload = new FormData();
     payload.append('description', instancia.description as string);
-    payload.append('created', instancia.created as string);
-    payload.append('tag', instancia.tag as string);
+    payload.append('created', formatDate as string);
+    payload.append('tag', instancia.tag?.toLowerCase() as string);
     payload.append('documento', this.selectedFile);
 
     this.documentoService.subirArchivo(payload)
@@ -56,8 +61,8 @@ export class CreateDocumentoComponent implements OnInit {
                            }
                           )
                           .catch(
-                            err => {
-                              console.log( err );
+                            () => {
+                              this.snackBar.open('Upsss! Ocurrio un error al subir el archivo');
                             }
                            )
 
@@ -65,7 +70,6 @@ export class CreateDocumentoComponent implements OnInit {
 
   onFileSelected(event :any) {
     this.selectedFile = event.target.files[0];
-    console.log(this.selectedFile);
   }
 
 }

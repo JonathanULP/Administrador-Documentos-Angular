@@ -5,6 +5,7 @@ import { Documento } from '../../interfaces/IDocumento';
 
 import {Title} from "@angular/platform-browser";
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-documentos',
@@ -18,7 +19,7 @@ export class DocumentosComponent implements OnInit {
   public msg : boolean = false;
 
 
-  constructor( private documentoService: DocumentosService, private titleService:Title , private router:Router ) {
+  constructor( private documentoService: DocumentosService, private titleService:Title , private router:Router, private snackBar : MatSnackBar ) {
     this.titleService.setTitle('Mis Documentos');
   }
 
@@ -83,9 +84,9 @@ export class DocumentosComponent implements OnInit {
 
                       })
               .catch(
-                      err => {
-                        console.log( err );
-                      });
+                    () => {
+                      this.snackBar.open('Upsss! Ocurrio un error inesperado.','OK');
+                    });
 
 
   };
@@ -121,8 +122,6 @@ export class DocumentosComponent implements OnInit {
 
 
   };
-
-
 
 }
 

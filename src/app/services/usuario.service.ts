@@ -13,7 +13,7 @@ export class UsuarioService {
 
 
 
-  public getUsuario() {
+  public async  getUsuario() {
 
     const headers = {
       'Content-Type' : 'application/json',
@@ -36,8 +36,28 @@ export class UsuarioService {
 
   }
 
+  public async crearUsuario( isuario : Usuario ) {
 
-  public updateUsuario(iusuario: Usuario) {
+    const headers = {
+      'Content-Type' : 'application/json'
+    };
+
+    return new Promise<IUsuario>( ( resolve , reject ) => {
+      this.httpClient.post<IUsuario>(`${this.url}`,isuario,{headers})
+                     .subscribe({
+                       next : ( resp ) => {
+                         resolve( resp );
+                       },
+                       error : ( err ) => {
+                         reject( err );
+                       }
+                     });
+    });
+
+  };
+
+
+  public async  updateUsuario(iusuario: Usuario) {
 
     const headers = {
       'Content-Type'  : 'application/json',

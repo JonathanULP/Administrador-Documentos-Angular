@@ -7,11 +7,7 @@ import { MessageBoxComponent } from '../message-box/message-box.component';
 import { FormBuilder, FormGroup , Validators } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
-
-
-
-
-
+import { MatSnackBar } from '@angular/material/snack-bar';
 @Component({
   selector: 'app-perfil',
   templateUrl: './perfil.component.html',
@@ -29,11 +25,10 @@ export class PerfilComponent implements OnInit {
 
   forma: FormGroup;
 
-  constructor( private usuarioservice: UsuarioService,public dialog: MatDialog , private fb: FormBuilder , private TitleService : Title ,private router : Router) {
+  constructor( private usuarioservice: UsuarioService,public dialog: MatDialog , private fb: FormBuilder , private TitleService : Title ,private router : Router , private snackBar : MatSnackBar) {
 
     this.TitleService.setTitle('Mi Perfil');
 
-    console.log(this.usuario);
     this.cargarFormulario();
     this.forma = this.crearFormulario();
     this.getUsuario();
@@ -56,13 +51,11 @@ export class PerfilComponent implements OnInit {
                             this.usuario.email = resp.usuario.email;
                             this.usuario.estado = resp.usuario.estado;
 
-                            console.log(this.usuario);
-
                          }
                         )
                        .catch(
                          err => {
-                          console.log('Error al cargar usuario  ',err);
+
                           if( err.status == 401) {
                             this.router.navigate(['/login']);
                           }
@@ -84,7 +77,7 @@ export class PerfilComponent implements OnInit {
                             this.openDialog();
                         })
                         .catch( err => {
-                          console.log(err);
+                          this.snackBar.open('Upss! Error al actualizar usuario','OK');
                         })
 
   };

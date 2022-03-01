@@ -8,9 +8,9 @@
   </a>
 
   <footer class="h-full break-words border-solid">
-      <a class="items-center no-underline hover:underline text-black text-center cursor-pointer break-words"
+      <a class="items-center no-underline hover:no-underline text-black text-center cursor-pointer break-words"
       [routerLink]="['/archivo',documento._id]">
-          <p class="text-blue-900 text-sm ">
+          <p class="text-blue-900 text-sm">
             {{ documento.created | date: 'dd-MM-YYYY' : 'UTC'  }}
           </p>
           <br>

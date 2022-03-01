@@ -5,6 +5,7 @@ import { DocumentosService } from '../../services/documentos.service';
 import { Documento } from '../../interfaces/IDocumento';
 
 import {Title} from "@angular/platform-browser";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-documentos-papelera',
@@ -17,7 +18,7 @@ export class DocumentosPapeleraComponent implements OnInit {
   public msg : boolean = false;
 
 
-  constructor( private documentoService: DocumentosService, private titleService:Title ) {
+  constructor( private documentoService: DocumentosService, private titleService:Title , private snackBar : MatSnackBar ) {
     this.titleService.setTitle("Papelera");
   }
 
@@ -33,19 +34,18 @@ export class DocumentosPapeleraComponent implements OnInit {
                                  resp => {
                                   this.idocumentos = [];
                                   this.idocumentos.push( ...resp.documentos);
-                                  console.log(this.idocumentos);
                                  }
                                )
                                .catch(
-                                 err => {
-                                   console.log( err );
-                                 }
+                                () => {
+                                  this.snackBar.open('Upsss! Ocurrio un error inesperado.','OK');
+                                }
                                )
   }
 
   async onKey(event : any) {
     const filtro = event.target.value;
-    console.log(filtro);
+
 
     if(filtro == '') {
       await this.getDocumentosEliminados();
@@ -57,19 +57,17 @@ export class DocumentosPapeleraComponent implements OnInit {
                                  resp => {
                                    this.idocumentos = [];
                                    this.idocumentos.push( ...resp.documentos);
-                                   console.log(this.idocumentos);
                                    this.msg = false;
 
                                    if (this.idocumentos.length == 0) {
-                                     console.log('No se encontraron resultados');
                                      this.msg = true;
                                    }
                                  }
                                )
                                .catch (
-                                 err => {
-                                   console.log( err );
-                                 }
+                                () => {
+                                  this.snackBar.open('Upsss! Ocurrio un error inesperado.','OK');
+                                }
                                )
 
     };

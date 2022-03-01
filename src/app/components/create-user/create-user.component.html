@@ -1,8 +1,5 @@
-<app-header></app-header>
 
-
-
-  <form #formulario="ngForm" [formGroup]="forma" (ngSubmit)="actualizar(formulario.value)" autocomplete="off" class=" container mx-auto m-auto grid grid-cols-12 gap-2 w-full h-full py-10 text-center shadow-lg content-center">
+  <form #formulario="ngForm" [formGroup]="forma" (ngSubmit)="crearUsuario(formulario.value)" autocomplete="off" class=" container mx-auto m-auto grid grid-cols-12 gap-2 w-full h-full py-10 text-center shadow-lg content-center">
 
     <div class="col-span-6 gap-2 col-start-4 my-4">
       <label for="nombre" class="block text-sm font-medium text-gray-700">
@@ -41,6 +38,7 @@
       </label>
       <input type="password"
       formControlName="password"
+      (keyup)="onKeyPass($event)"
       [ngClass]="forma.get('password')!.invalid && forma.get('password')!.touched ? 'border-2 border-red-100 text-red-800' : 'border-2 border-green-200 text-green-600'"
       class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline">
     </div>
@@ -51,13 +49,26 @@
     </div>
 
     <div class="col-span-6 gap-2 col-start-4 my-4">
-      <mat-slide-toggle name="estado" formControlName="estado" class="block text-sm font-medium text-gray-700">Activo</mat-slide-toggle>
+      <label for="password" class="block text-sm font-medium text-gray-700">
+          Contraseña
+      </label>
+      <input type="password"
+      formControlName="confpassword"
+      (keyup)="onKey($event)"
+      [ngClass]="msg == false ? 'border-2 border-red-100 text-red-800' : 'border-2 border-green-200 text-green-600'"
+      class="outline-none rounded py-1 px-2 w-full h-full bg-white shadow-md text-sm text-center text-gray-700 placeholder-gray-400 focus:outline-none focus:shadow-outline">
     </div>
+    <div *ngIf="msg == false " class="col-span-6 gap-2 col-start-4">
+      <label for="password" class="text-xs font-light text-red-700">
+        Las contraseñas no coinciden
+      </label>
+    </div>
+
 
     <div class="col-span-6 col-start-4 my-4">
 
       <button class="mr-1 px-5 inline-flex justify-center py-2 items-center border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-400 hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 ">
-        Actualizar
+        Crear
       </button>
 
     </div>
