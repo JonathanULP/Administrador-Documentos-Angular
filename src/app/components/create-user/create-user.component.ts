@@ -4,6 +4,8 @@ import { Usuario } from '../../interfaces/IUsuario';
 import { UsuarioService } from '../../services/usuario.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { LoginService } from '../../services/login.service';
+import { Ilogin } from '../../interfaces/Ilogin';
 
 @Component({
   selector: 'app-create-user',
@@ -24,9 +26,16 @@ export class CreateUserComponent implements OnInit {
     email: '',
     password: '',
     estado: true
-  }
-  
-  constructor( private fb : FormBuilder , private usuarioService : UsuarioService , private router : Router , private snackBar : MatSnackBar) {
+  };
+
+  public Ilogin : Ilogin = {
+
+    email    : '',
+    password : ''
+
+  };
+
+  constructor( private fb : FormBuilder , private usuarioService : UsuarioService , private router : Router , private snackBar : MatSnackBar ) {
 
       this.forma = this.crearFormulario();
 
@@ -54,21 +63,21 @@ export class CreateUserComponent implements OnInit {
     this.iusuario.name = instance.name;
     this.iusuario.password = instance.password;
 
+    this.Ilogin.email = instance.email;
+    this.Ilogin.password = instance.password;
+
     if( this.msg ) {
-     
+
       await this.usuarioService.crearUsuario(this.iusuario)
-                               .then( 
+                               .then(
                                  () => {
 
                                   this.snackBar.open('Usuario creado exitosamente','OK');
-
-                                  setInterval( () =>{
-                                    this.router.navigate(['/login']);
-                                  },2000);
+                                  this.router.navigate(['/login']);
 
                                  }
                                 )
-                                .catch( 
+                                .catch(
                                   () => {
                                     this.snackBar.open('Upss! Ocurrio un error al crear el usuario','OK');
                                   }

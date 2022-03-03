@@ -62,7 +62,7 @@ export class CreateDocumentoComponent implements OnInit {
                           )
                           .catch(
                             () => {
-                              this.snackBar.open('Upsss! Ocurrio un error al subir el archivo');
+                              this.snackBar.open('Upsss! Ocurrio un error al subir el archivo','OK');
                             }
                            )
 

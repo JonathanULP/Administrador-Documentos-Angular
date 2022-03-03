@@ -52,9 +52,9 @@ export class DocumentosComponent implements OnInit {
         }
        )
        .catch(
-         err => {
-           console.log( err );
-         }
+         () => {
+          this.snackBar.open('Upsss! Ocurrio un error inesperado.','OK');
+        }
         );
     }
     else{
@@ -113,9 +113,9 @@ export class DocumentosComponent implements OnInit {
                                  }
                                )
                                .catch (
-                                 err => {
-                                   console.log( err );
-                                 }
+                                 () => {
+                                  this.snackBar.open('Upsss! Ocurrio un error inesperado.','OK');
+                                }
                                )
 
     };
